@@ -1,0 +1,20 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: mern-client-deployment
+spec:
+  replicas: 1 # Adjust as needed
+  selector:
+    matchLabels:
+      app: mern-client
+  template:
+    metadata:
+      labels:
+        app: mern-client
+    spec:
+      containers:
+        - name: mern-client
+          image: k8s-client
+          ports:
+            - containerPort: 3000 # Assuming your client runs on port 3000
+          imagePullPolicy: Never

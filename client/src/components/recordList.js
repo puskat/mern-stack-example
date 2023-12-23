@@ -1,22 +1,17 @@
 import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 
-const Record = (props) => (
+const Record = ({ record, deleteRecord }) => (
   <tr>
-    <td>{props.record.name}</td>
-    <td>{props.record.position}</td>
-    <td>{props.record.level}</td>
+    <td>{record.name}</td>
+    <td>{record.position}</td>
+    <td>{record.level}</td>
     <td>
-      <Link className="btn btn-link" to={`/edit/${props.record._id}`}>
+      <Link className="btn btn-link" to={`/edit/${record._id}`}>
         Edit
       </Link>{" "}
       |
-      <button
-        className="btn btn-link"
-        onClick={() => {
-          props.deleteRecord(props.record._id);
-        }}
-      >
+      <button className="btn btn-link" onClick={() => deleteRecord(record._id)}>
         Delete
       </button>
     </td>
@@ -25,41 +20,46 @@ const Record = (props) => (
 
 export default function RecordList() {
   const [records, setRecords] = useState([]);
-  const [shouldRefetch, setShouldRefetch] = useState(true); // Trigger initial fetch
+  const [shouldRefetch, setShouldRefetch] = useState(true);
+  const [isDeleting, setIsDeleting] = useState(false); // Track deletion state
 
   useEffect(() => {
     async function getRecords() {
       try {
-        const response = await fetch(`http://localhost:5000/record/`);
+        const response = await fetch(`http://192.168.49.2:30001/record/`);
         if (!response.ok) {
-          const message = `An error occurred: ${response.statusText}`;
-          window.alert(message);
-          return;
+          throw new Error(`HTTP error: ${response.status}`);
         }
         const fetchedRecords = await response.json();
         setRecords(fetchedRecords);
       } catch (error) {
         console.error("Error fetching records:", error);
-        // Consider displaying a user-friendly error message here
+        // Display a user-friendly error message here
       }
     }
 
     if (shouldRefetch) {
       getRecords();
-      setShouldRefetch(false); // Prevent unnecessary re-fetches
+      setShouldRefetch(false);
     }
   }, [shouldRefetch]);
 
-  // This method will delete a record and trigger data re-fetching
   async function deleteRecord(id) {
-    await fetch(`http://localhost:5000/${id}`, {
-      method: "DELETE",
-    });
-    setRecords(records.filter((el) => el._id !== id));
-    setShouldRefetch(true); // Force re-fetch after deletion
+    setIsDeleting(true); // Visually indicate deletion
+    try {
+      await fetch(`http://192.168.49.2:30001/${id}`, {
+        method: "DELETE",
+      });
+      setRecords(records.filter((el) => el._id !== id));
+    } catch (error) {
+      console.error("Error deleting record:", error);
+      // Display a user-friendly error message here
+    } finally {
+      setIsDeleting(false);
+      setShouldRefetch(true); // Force re-fetch after deletion attempt
+    }
   }
 
-  // This following section will display the table with the records of individuals.
   return (
     <div>
       <h3>Record List</h3>
@@ -74,10 +74,15 @@ export default function RecordList() {
         </thead>
         <tbody>
           {records.map((record) => (
-            <Record key={record._id} record={record} />
+            <Record
+              key={record._id}
+              record={record}
+              deleteRecord={deleteRecord}
+            />
           ))}
         </tbody>
       </table>
+      {isDeleting && <p>Deleting record...</p>} // Show during deletion
     </div>
   );
 }

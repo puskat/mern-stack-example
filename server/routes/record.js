@@ -65,14 +65,16 @@ recordRoutes.route("/update/:id").post(async (req, response) => {
 });
 
 // This section will help you delete a record
-recordRoutes.route("/:id").delete((req, response) => {
-  let db_connect = dbo.getDb();
-  let myquery = { _id: ObjectId(req.params.id) };
-  db_connect.collection("records").deleteOne(myquery, function (err, obj) {
-    if (err) throw err;
+recordRoutes.route("/:id").delete(async (req, response) => {
+  try {
+    const db_connect = dbo.getDb();
+    const myquery = { _id: new ObjectId(req.params.id) }; // Use 'new'
+    await db_connect.collection("records").deleteOne(myquery);
     console.log("1 document deleted");
-    response.json(obj);
-  });
+    response.json({ message: "Record deleted successfully" });
+  } catch (error) {
+    console.error("Error deleting record:", error);
+    response.status(500).send("Error deleting record");
+  }
 });
-
 module.exports = recordRoutes;

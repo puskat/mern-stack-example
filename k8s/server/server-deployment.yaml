@@ -1,0 +1,20 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: mern-server-deployment
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: mern-server
+  template:
+    metadata:
+      labels:
+        app: mern-server
+    spec:
+      containers:
+        - name: mern-server
+          image: k8s-server
+          ports:
+            - containerPort: 5000
+          imagePullPolicy: Never

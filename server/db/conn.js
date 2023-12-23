@@ -1,5 +1,5 @@
 const { MongoClient } = require("mongodb");
-const Db = "mongodb://my_user:password123@localhost:27017/employees";
+const Db = "mongodb://my_user:password123@mongodb:27017/employees";
 const client = new MongoClient(Db, {
   useNewUrlParser: true,
   useUnifiedTopology: true,
