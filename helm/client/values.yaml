@@ -1,0 +1,25 @@
+# Default values for MERN client.
+replicaCount: 1
+
+image:
+  repository: client
+  pullPolicy: Never
+
+service:
+  type: ClusterIP
+  port: 3000
+  name: client-service
+
+ingress:
+  enabled: true
+  annotations:
+    nginx.ingress.kubernetes.io/rewrite-target: "/"
+  hosts:
+    paths:
+    - path: "/"
+      pathType: Prefix
+
+
+env:
+  SERVER_URL: "http://192.168.49.2" # Change as needed
+  SERVER_PORT: "30001"

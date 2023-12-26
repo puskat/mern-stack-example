@@ -1,0 +1,12 @@
+# Default values for MERN server.
+replicaCount: 1
+
+image:
+  repository: server
+  tag: latest
+  pullPolicy: Never
+
+service:
+  type: NodePort
+  port: 5000
+  nodePort: 30001

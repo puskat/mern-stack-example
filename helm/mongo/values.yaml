@@ -1,0 +1,60 @@
+# Default values for MongoDB.
+image:
+  repository: bitnami/mongodb
+  tag: 4.4.6 # Replace with your desired version
+  pullPolicy: IfNotPresent
+
+mongodb:
+  auth:
+    username: my_user
+    password: password123 # Consider using Secrets
+    database: employees
+
+persistence:
+  enabled: true
+  storageClass: standard
+  accessModes:
+  - ReadWriteOnce
+  size: 1Gi
+
+resources:
+  requests:
+    memory: 256Mi
+    cpu: 100m
+  limits:
+    memory: 512Mi
+    cpu: 200m
+
+service:
+  name: mongodb
+  type: ClusterIP
+  port: 27017
+
+securityContext:
+  runAsUser: 1001
+  fsGroup: 1001
+
+livenessProbe:
+  initialDelaySeconds: 30
+  periodSeconds: 10
+
+readinessProbe:
+  initialDelaySeconds: 5
+  periodSeconds: 10
+
+autoScaling:
+  enabled: yes
+
+persistence:
+  enabled: true
+  storageClass: standard
+  accessModes: ReadWriteOnce
+  size: 1Gi
+  hostPath: /tmp/mongodb # Only for single-node setups
+
+mongodb:
+  auth:
+    password: "password123"
+    username: "my_user"
+    database: "employees"
+

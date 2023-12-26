@@ -7,6 +7,6 @@ spec:
   selector:
     app: mern-server
   ports:
-    - port: 5000
-      targetPort: 5000
-      nodePort: 30001 # Optional: specify a node port; otherwise, a random port in the NodePort range is assigned
+  - port: 5000
+    targetPort: 5000
+    nodePort: 30001
