@@ -1,5 +1,8 @@
 import React, { useState, useEffect } from "react";
 import { useParams, useNavigate } from "react-router";
+const SERVER_URL = process.env.SERVER_URL || "http://192.168.49.2";
+const SERVER_PORT = process.env.SERVER_PORT || "30001";
+
 export default function Edit() {
   const [form, setForm] = useState({
     name: "",
@@ -13,7 +16,7 @@ export default function Edit() {
     async function fetchData() {
       const id = params.id.toString();
       const response = await fetch(
-        `http://192.168.49.2:30001/record/${params.id.toString()}`
+        `${SERVER_URL}:${SERVER_PORT}/record/${params.id.toString()}`
       );
       if (!response.ok) {
         const message = `An error has occurred: ${response.statusText}`;
@@ -45,7 +48,7 @@ export default function Edit() {
       level: form.level,
     };
     // This will send a post request to update the data in the database.
-    await fetch(`http://192.168.49.2:30001/update/${params.id}`, {
+    await fetch(`${SERVER_URL}:${SERVER_PORT}/update/${params.id}`, {
       method: "POST",
       body: JSON.stringify(editedPerson),
       headers: {

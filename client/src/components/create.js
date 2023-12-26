@@ -1,5 +1,10 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router";
+
+const SERVER_URL = process.env.SERVER_URL || "http://192.168.49.2";
+const SERVER_PORT = process.env.SERVER_PORT || "30001";
+//port is also parameterized for easier usage
+
 export default function Create() {
   const [form, setForm] = useState({
     name: "",
@@ -18,7 +23,7 @@ export default function Create() {
     e.preventDefault();
     // When a post request is sent to the create url, we'll add a new record to the database.
     const newPerson = { ...form };
-    await fetch("http://192.168.49.2:30001/record/add", {
+    await fetch(`${SERVER_URL}:${SERVER_PORT}/record/add`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",

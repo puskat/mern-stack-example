@@ -6,6 +6,6 @@ spec:
   selector:
     app: mern-client
   ports:
-    - port: 3000 # Expose the client on port 80 for external access
+    - port: 3000
       targetPort: 3000
   type: ClusterIP

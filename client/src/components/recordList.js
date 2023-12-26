@@ -1,6 +1,9 @@
 import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 
+const SERVER_URL = process.env.SERVER_URL || "http://192.168.49.2";
+const SERVER_PORT = process.env.SERVER_PORT || "30001";
+
 const Record = ({ record, deleteRecord }) => (
   <tr>
     <td>{record.name}</td>
@@ -26,7 +29,7 @@ export default function RecordList() {
   useEffect(() => {
     async function getRecords() {
       try {
-        const response = await fetch(`http://192.168.49.2:30001/record/`);
+        const response = await fetch(`${SERVER_URL}:${SERVER_PORT}/record/`);
         if (!response.ok) {
           throw new Error(`HTTP error: ${response.status}`);
         }
@@ -47,7 +50,7 @@ export default function RecordList() {
   async function deleteRecord(id) {
     setIsDeleting(true); // Visually indicate deletion
     try {
-      await fetch(`http://192.168.49.2:30001/${id}`, {
+      await fetch(`${SERVER_URL}:${SERVER_PORT}/${id}`, {
         method: "DELETE",
       });
       setRecords(records.filter((el) => el._id !== id));

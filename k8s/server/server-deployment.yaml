@@ -14,7 +14,7 @@ spec:
     spec:
       containers:
         - name: mern-server
-          image: k8s-server
+          image: server
           ports:
             - containerPort: 5000
           imagePullPolicy: Never
