@@ -7,7 +7,6 @@ image:
 mongodb:
   auth:
     username: my_user
-    password: password123 # Consider using Secrets
     database: employees
 
 persistence:

@@ -11,13 +11,13 @@ service:
   name: client-service
 
 ingress:
-  enabled: true
   annotations:
     nginx.ingress.kubernetes.io/rewrite-target: "/"
   hosts:
     paths:
     - path: "/"
       pathType: Prefix
+
 
 
 env:

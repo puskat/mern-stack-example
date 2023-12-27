@@ -20,13 +20,14 @@ spec:
           imagePullPolicy: {{ .Values.image.pullPolicy }}
           env:
             - name: MONGODB_USERNAME
-              value: "my_user"
+              value: "{{ .Values.mongodb.auth.username }}"
             - name: MONGODB_PASSWORD
-              value: "password123"
+              valueFrom:
+                secretKeyRef:
+                  name: {{ include "mongo.fullname" . }}-secret
+                  key: mongodb-password
             - name: MONGODB_DATABASE
-              value: "employees"
-            - name: ALLOW_EMPTY_PASSWORD
-              value: "true"
+              value: "{{ .Values.mongodb.auth.database }}"
           ports:
             - containerPort: {{ .Values.service.port }}
           volumeMounts:
