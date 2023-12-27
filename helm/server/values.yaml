@@ -2,7 +2,7 @@
 replicaCount: 1
 
 image:
-  repository: server-4
+  repository: server-5
   tag: latest
   pullPolicy: Never
 
