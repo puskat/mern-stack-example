@@ -2,7 +2,7 @@
 replicaCount: 1
 
 image:
-  repository: server
+  repository: server-4
   tag: latest
   pullPolicy: Never
 
@@ -10,3 +10,17 @@ service:
   type: NodePort
   port: 5000
   nodePort: 30001
+
+livenessProbe:
+  initialDelaySeconds: 30
+  periodSeconds: 10
+
+readinessProbe:
+  initialDelaySeconds: 10
+  periodSeconds: 10
+
+server:
+  auth:
+    password: "password123"
+    username: "my_user"
+    database: "employees"

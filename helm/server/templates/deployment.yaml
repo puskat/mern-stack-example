@@ -18,3 +18,23 @@ spec:
           imagePullPolicy: {{ .Values.image.pullPolicy }}
           ports:
             - containerPort: {{ .Values.service.port }}
+          env:
+          - name: MONGODB_USERNAME
+            valueFrom:
+              secretKeyRef:
+                name: server-secret
+                key: username
+          - name: MONGODB_PASSWORD
+            valueFrom:
+              secretKeyRef:
+                name: server-secret
+                key: password
+          - name: MONGODB_DATABASE
+            valueFrom:
+              secretKeyRef:
+                name: server-secret
+                key: database
+          - name: MONGODB_HOST
+            value: "mongodb" 
+          - name: MONGODB_PORT
+            value: "27017"

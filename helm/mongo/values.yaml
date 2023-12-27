@@ -4,12 +4,6 @@ image:
   tag: 4.4.6 # Replace with your desired version
   pullPolicy: IfNotPresent
 
-mongodb:
-  auth:
-    username: my_user
-    allow: true
-    database: employees
-
 persistence:
   enabled: true
   storageClass: standard

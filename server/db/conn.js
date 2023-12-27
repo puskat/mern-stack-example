@@ -1,5 +1,15 @@
 const { MongoClient } = require("mongodb");
-const Db = "mongodb://my_user:password123@mongodb:27017/employees";
+
+const username = process.env.MONGODB_USERNAME;
+const password = process.env.MONGODB_PASSWORD;
+const database = process.env.MONGODB_DATABASE;
+const host = process.env.MONGODB_HOST || 'mongodb';
+const port = process.env.MONGODB_PORT || 27017;
+
+
+const Db = `mongodb://${username}:${password}@${host}:${port}/${database}`;
+
+
 const client = new MongoClient(Db, {
   useNewUrlParser: true,
   useUnifiedTopology: true,
