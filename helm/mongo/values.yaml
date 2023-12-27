@@ -7,6 +7,7 @@ image:
 mongodb:
   auth:
     username: my_user
+    allow: true
     database: employees
 
 persistence:

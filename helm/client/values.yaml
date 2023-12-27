@@ -18,6 +18,14 @@ ingress:
     - path: "/"
       pathType: Prefix
 
+livenessProbe:
+  initialDelaySeconds: 30
+  periodSeconds: 10
+
+readinessProbe:
+  initialDelaySeconds: 5
+  periodSeconds: 10
+
 
 
 env:
