@@ -1,0 +1,37 @@
+# SSL Keys
+*.key
+*.crt
+
+# Environment files
+.env
+*.env.local
+
+# Node modules
+node_modules/
+
+# Build output
+/build
+/dist
+
+# Logs
+logs
+*.log
+
+# Dependency directories
+jspm_packages/
+bower_components/
+
+# Optional npm cache directory
+.npm
+
+# Optional eslint cache
+.eslintcache
+
+# macOS - Specific Files
+.DS_Store
+
+# IDE-specific files
+/.idea
+/.vscode
+*.swp
+*.swo

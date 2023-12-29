@@ -6,9 +6,10 @@ image:
   pullPolicy: Never
 
 service:
-  type: ClusterIP
-  port: 3000
-  name: client-service
+  type: NodePort 
+  port: 80        
+  targetPort: 80  
+
 
 ingress:
   annotations:

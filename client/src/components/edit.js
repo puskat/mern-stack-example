@@ -1,7 +1,8 @@
 import React, { useState, useEffect } from "react";
 import { useParams, useNavigate } from "react-router";
-const SERVER_URL = process.env.SERVER_URL || "http://192.168.49.2";
-const SERVER_PORT = process.env.SERVER_PORT || "30001";
+
+const SERVER_URL = process.env.REACT_APP_SERVER_URL || "http://192.168.49.2";
+const SERVER_PORT = process.env.REACT_APP_SERVER_PORT || "30001";
 
 export default function Edit() {
   const [form, setForm] = useState({
