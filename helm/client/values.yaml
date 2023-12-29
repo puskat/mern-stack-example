@@ -27,8 +27,3 @@ readinessProbe:
   initialDelaySeconds: 5
   periodSeconds: 10
 
-
-
-env:
-  SERVER_URL: "http://192.168.49.2" # Change as needed
-  SERVER_PORT: "30001"
