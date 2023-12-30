@@ -11,14 +11,6 @@ service:
   targetPort: 80  
 
 
-ingress:
-  annotations:
-    nginx.ingress.kubernetes.io/rewrite-target: "/"
-  hosts:
-    paths:
-    - path: "/"
-      pathType: Prefix
-
 livenessProbe:
   initialDelaySeconds: 30
   periodSeconds: 10
