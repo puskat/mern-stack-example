@@ -6,7 +6,6 @@ spec:
   storageClassName: {{ .Values.persistence.storageClass }}
   capacity:
     storage: {{ .Values.persistence.size }}
-  accessModes:
-    - {{ .Values.persistence.accessModes }}
+  accessModes: {{ .Values.persistence.accessModes }}
   hostPath:
     path: {{ .Values.persistence.hostPath }}

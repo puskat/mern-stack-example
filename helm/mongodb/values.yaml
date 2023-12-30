@@ -4,21 +4,6 @@ image:
   tag: 4.4.6 # Replace with your desired version
   pullPolicy: IfNotPresent
 
-persistence:
-  enabled: true
-  storageClass: standard
-  accessModes:
-  - ReadWriteOnce
-  size: 1Gi
-
-resources:
-  requests:
-    memory: 256Mi
-    cpu: 100m
-  limits:
-    memory: 512Mi
-    cpu: 200m
-
 service:
   name: mongodb
   type: ClusterIP
@@ -36,11 +21,8 @@ readinessProbe:
   initialDelaySeconds: 5
   periodSeconds: 10
 
-autoScaling:
-  enabled: yes
 
 persistence:
-  enabled: true
   storageClass: standard
   accessModes: ReadWriteOnce
   size: 1Gi
