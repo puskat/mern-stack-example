@@ -5,23 +5,23 @@ metadata:
 spec:
   tls:
   - hosts:
-    - mern.minikube.test
-    secretName: mern-tls
+    - {{ .Values.ingress.hosts }}
+    secretName: {{ .Values.ingress.secretName }}
   rules:
-  - host: mern.minikube.test
+  - host: {{ .Values.ingress.hosts }}
     http:
       paths:
-      - path: /
-        pathType: Prefix
+      - path: {{ .Values.ingress.clientPath }}
+        pathType: {{ .Values.ingress.clientPathType }}
         backend:
           service:
-            name: client
+            name: {{ .Values.ingress.clientName }}
             port:
-              number: 80  
-      - path: /api
-        pathType: Prefix
+              number: {{ .Values.ingress.clientPort }}
+      - path: {{ .Values.ingress.servicePath }}
+        pathType: {{ .Values.ingress.servicePathType }}
         backend:
           service:
-            name: server
+            name: {{ .Values.ingress.serviceName }}
             port: 
-              number: 5000
+              number: {{ .Values.ingress.servicePort }}

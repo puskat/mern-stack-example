@@ -10,6 +10,21 @@ service:
   port: 80        
   targetPort: 80  
 
+ingress:
+  hosts: mern.minikube.test
+  secretName: mern-tls
+  host: mern.minikube.test
+  clientName: client
+  clientPath: /
+  clientPort: 80
+  clientPathType: Prefix
+  serviceName: server
+  servicePath: /api
+  servicePort: 5000
+  servicePathType: Prefix
+
+
+
 
 livenessProbe:
   initialDelaySeconds: 30

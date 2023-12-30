@@ -4,21 +4,21 @@ provider "helm" {
   }
 }
 
-resource "helm_release" "mongodb" {
-  name       = "mongodb"
-  chart      = "../helm/mongodb"
+module "mongodb" {
+  source = "./modules/mongodb"
+  # Add any required variables or configurations specific to MongoDB
 }
 
-resource "helm_release" "client" {
-  name       = "client"
-  chart      = "../helm/client"
-  depends_on = [helm_release.server]
-
+module "server" {
+  source = "./modules/server"
+  # Add variables specific to Server module
+  # Ensure this module depends on MongoDB module
+  depends_on = [module.mongodb]
 }
 
-resource "helm_release" "server" {
-  name       = "server"
-  chart      = "../helm/server"
-  depends_on = [helm_release.mongodb]
-
+module "client" {
+  source = "./modules/client"
+  # Add variables specific to Client module
+  # Ensure this module depends on Server module
+  depends_on = [module.server]
 }
