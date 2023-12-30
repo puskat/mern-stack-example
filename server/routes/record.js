@@ -4,7 +4,7 @@ const dbo = require("../db/conn");
 const ObjectId = require("mongodb").ObjectId;
 
 // GET all records
-recordRoutes.route("/record").get(async (req, res) => {
+recordRoutes.route("/api/record").get(async (req, res) => {
   try {
     const records = await dbo.getDb().collection("records").find({}).toArray();
     res.json(records);
@@ -15,7 +15,7 @@ recordRoutes.route("/record").get(async (req, res) => {
 });
 
 // GET a record by ID
-recordRoutes.route("/record/:id").get(async (req, res) => {
+recordRoutes.route("/api/record/:id").get(async (req, res) => {
   try {
     const myquery = { _id: new ObjectId(req.params.id) }; // Use 'new'
     const record = await dbo.getDb().collection("records").findOne(myquery);
@@ -30,7 +30,7 @@ recordRoutes.route("/record/:id").get(async (req, res) => {
 });
 
 // POST route to create a new record
-recordRoutes.route("/record/add").post(async (req, res) => {
+recordRoutes.route("/api/record/add").post(async (req, res) => {
   try {
     const newRecord = req.body;
     await dbo.getDb().collection("records").insertOne(newRecord);
@@ -44,7 +44,7 @@ recordRoutes.route("/record/add").post(async (req, res) => {
 
 // ... (rest of the routes)
 
-recordRoutes.route("/update/:id").post(async (req, response) => {
+recordRoutes.route("/api/update/:id").post(async (req, response) => {
   // Use async/await
   try {
     const db = dbo.getDb();
@@ -65,7 +65,7 @@ recordRoutes.route("/update/:id").post(async (req, response) => {
 });
 
 // This section will help you delete a record
-recordRoutes.route("/:id").delete(async (req, response) => {
+recordRoutes.route("/api/:id").delete(async (req, response) => {
   try {
     const db_connect = dbo.getDb();
     const myquery = { _id: new ObjectId(req.params.id) }; // Use 'new'

@@ -1,9 +1,6 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router";
 
-const SERVER_URL = process.env.REACT_APP_SERVER_URL || "http://192.168.49.2";
-const SERVER_PORT = process.env.REACT_APP_SERVER_PORT || "30001";
-
 export default function Create() {
   const [form, setForm] = useState({
     name: "",
@@ -11,31 +8,35 @@ export default function Create() {
     level: "",
   });
   const navigate = useNavigate();
-  // These methods will update the state properties.
+
   function updateForm(value) {
     return setForm((prev) => {
       return { ...prev, ...value };
     });
   }
-  // This function will handle the submission.
+
   async function onSubmit(e) {
     e.preventDefault();
-    // When a post request is sent to the create url, we'll add a new record to the database.
     const newPerson = { ...form };
-    await fetch(`${SERVER_URL}:${SERVER_PORT}/record/add`, {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify(newPerson),
-    }).catch((error) => {
-      window.alert(error);
-      return;
-    });
-    setForm({ name: "", position: "", level: "" });
-    navigate("/");
+
+    try {
+      const response = await fetch("/api/record/add", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(newPerson),
+      });
+
+      if (!response.ok) {
+        throw new Error(`HTTP error: ${response.status}`);
+      }
+      
+      await response.json();
+      setForm({ name: "", position: "", level: "" });
+      navigate("/");
+    } catch (error) {
+      window.alert(`Error: ${error.message}`);
+    }
   }
-  // This following section will display the form that takes the input from the user.
   return (
     <div>
       <h3>Create New Record</h3>
