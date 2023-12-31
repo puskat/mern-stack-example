@@ -1,5 +1,6 @@
 const { MongoClient } = require("mongodb");
 
+//mongodb connection is fully parameterized.
 const username = process.env.MONGODB_USERNAME;
 const password = process.env.MONGODB_PASSWORD;
 const database = process.env.MONGODB_DATABASE;

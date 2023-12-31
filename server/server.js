@@ -18,7 +18,7 @@ app.get('/health', async (req, res) => {
     res.status(500).send('Database connection is unhealthy');
   }
 });
-
+//database connection test is added as healthcheck route for server.
 app.listen(port, async () => {
   try {
     await dbo.connectToServer();

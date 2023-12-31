@@ -1,6 +1,8 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router";
 
+//fetch is updated from fetch("http://localhost:5050/<endpoint> to/api/<endpoint> because of the ingress update
+
 export default function Create() {
   const [form, setForm] = useState({
     name: "",
@@ -18,7 +20,6 @@ export default function Create() {
   async function onSubmit(e) {
     e.preventDefault();
     const newPerson = { ...form };
-
     try {
       const response = await fetch("/api/record/add", {
         method: "POST",

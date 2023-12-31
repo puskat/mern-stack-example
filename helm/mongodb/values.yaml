@@ -1,7 +1,7 @@
 # Default values for MongoDB.
 image:
   repository: bitnami/mongodb
-  tag: 4.4.6 # Replace with your desired version
+  tag: 4.4.6 
   pullPolicy: IfNotPresent
 
 service:

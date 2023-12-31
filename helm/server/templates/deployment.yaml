@@ -22,17 +22,17 @@ spec:
             - name: MONGODB_USERNAME
               valueFrom:
                 secretKeyRef:
-                  name: server-secret
+                  name: {{ include "server.fullname" . }}-secret
                   key: username
             - name: MONGODB_PASSWORD
               valueFrom:
                 secretKeyRef:
-                  name: server-secret
+                  name: {{ include "server.fullname" . }}-secret
                   key: password
             - name: MONGODB_DATABASE
               valueFrom:
                 secretKeyRef:
-                  name: server-secret
+                  name: {{ include "server.fullname" . }}-secret
                   key: database
             - name: MONGODB_HOST
               value: "mongodb" 

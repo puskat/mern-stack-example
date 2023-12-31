@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { useParams, useNavigate } from "react-router";
+//fetch is updated from fetch("http://localhost:5050/<endpoint> to/api/<endpoint> because of the ingress update
 
 export default function Edit() {
   const [form, setForm] = useState({

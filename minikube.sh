@@ -19,8 +19,7 @@ echo "Minikube setup completed."
 
 #after this command, images will be seen by the cluster
 #eval $(minikube docker-env) 
-#
+
 #docker build -t client ./client
 #docker build -t server ./server
-#
-#echo "server and client images are ready."
+

@@ -10,14 +10,6 @@ RUN npm install
 # Copy the rest of the code
 COPY . .
 
-# Set build-time environment variables
-ARG SERVER_URL
-ARG SERVER_PORT
-
-# Use build arguments to set React environment variables
-ENV REACT_APP_SERVER_URL=${SERVER_URL}
-ENV REACT_APP_SERVER_PORT=${SERVER_PORT}
-
 # Build the application
 RUN npm run build
 

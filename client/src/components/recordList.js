@@ -1,6 +1,8 @@
 import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 
+//fetch is updated from fetch("http://localhost:5050/<endpoint> to/api/<endpoint> because of the ingress update
+
 const Record = ({ record, deleteRecord }) => (
   <tr>
     <td>{record.name}</td>
