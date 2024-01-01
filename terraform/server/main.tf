@@ -77,4 +77,23 @@ resource "helm_release" "server" {
     name  = "server.auth.database"
     value = var.server_auth_database
   }
+  set {
+    name  = "resources.requests.memory"
+    value = var.resources_requests_memory
+  }
+
+  set {
+    name  = "resources.requests.cpu"
+    value = var.resources_requests_cpu
+  }
+
+  set {
+    name  = "resources.limits.memory"
+    value = var.resources_limits_memory
+  }
+
+  set {
+    name  = "resources.limits.cpu"
+    value = var.resources_limits_cpu
+  }
 }

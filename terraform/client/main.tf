@@ -113,4 +113,23 @@ resource "helm_release" "client" {
     name  = "readinessProbe.periodSeconds"
     value = var.readinessProbe_periodSeconds
   }
+  set {
+    name  = "resources.requests.memory"
+    value = var.resources_requests_memory
+  }
+
+  set {
+    name  = "resources.requests.cpu"
+    value = var.resources_requests_cpu
+  }
+
+  set {
+    name  = "resources.limits.memory"
+    value = var.resources_limits_memory
+  }
+
+  set {
+    name  = "resources.limits.cpu"
+    value = var.resources_limits_cpu
+  }
 }

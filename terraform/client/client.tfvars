@@ -24,3 +24,9 @@ livenessProbe_periodSeconds = 10
 
 readinessProbe_initialDelaySeconds = 5
 readinessProbe_periodSeconds = 10
+
+
+resources_requests_memory = "256Mi"
+resources_requests_cpu = "100m"
+resources_limits_memory = "512Mi"
+resources_limits_cpu = "200m"

@@ -23,21 +23,27 @@ spec:
               valueFrom:
                 secretKeyRef:
                   name: {{ include "server.fullname" . }}-secret
-                  key: username
+                  key: mongodb-username
             - name: MONGODB_PASSWORD
               valueFrom:
                 secretKeyRef:
                   name: {{ include "server.fullname" . }}-secret
-                  key: password
+                  key: mongodb-password
             - name: MONGODB_DATABASE
               valueFrom:
                 secretKeyRef:
                   name: {{ include "server.fullname" . }}-secret
-                  key: database
+                  key: mongodb-database
             - name: MONGODB_HOST
-              value: "mongodb" 
+              valueFrom:
+                secretKeyRef:
+                  name: {{ include "server.fullname" . }}-secret
+                  key: mongodb-host
             - name: MONGODB_PORT
-              value: "27017"
+              valueFrom:
+                secretKeyRef:
+                  name: {{ include "server.fullname" . }}-secret
+                  key: mongodb-port
           livenessProbe:
             httpGet:
               path: /health
@@ -50,3 +56,10 @@ spec:
               port: {{ .Values.service.port }}
             initialDelaySeconds: {{ .Values.readinessProbe.initialDelaySeconds }}
             periodSeconds: {{ .Values.readinessProbe.periodSeconds }}
+          resources:
+            requests:
+              memory: "{{ .Values.resources.requests.memory }}"
+              cpu: "{{ .Values.resources.requests.cpu }}"
+            limits:
+              memory: "{{ .Values.resources.limits.memory }}"
+              cpu: "{{ .Values.resources.limits.cpu }}"

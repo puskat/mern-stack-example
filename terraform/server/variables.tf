@@ -43,13 +43,37 @@ variable "readinessProbe_periodSeconds" {
 }
 
 variable "server_auth_password" {
-  description = "Password for server authentication"
+  description = "Password for server-db authentication"
 }
 
 variable "server_auth_username" {
-  description = "Username for server authentication"
+  description = "Username for server-db authentication"
 }
 
 variable "server_auth_database" {
-  description = "Database name for server authentication"
+  description = "Database name for server-db authentication"
+}
+
+variable "server_auth_host" {
+  description = "Host name for server-db authentication"
+}
+
+variable "server_auth_port" {
+  description = "Port for server-db authentication"
+}
+
+variable "resources_requests_memory" {
+  description = "Memory requests for Server"
+}
+
+variable "resources_requests_cpu" {
+  description = "CPU requests for Server"
+}
+
+variable "resources_limits_memory" {
+  description = "Memory limits for Server"
+}
+
+variable "resources_limits_cpu" {
+  description = "CPU limits for Server"
 }

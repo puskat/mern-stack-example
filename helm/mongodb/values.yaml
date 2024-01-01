@@ -21,10 +21,18 @@ readinessProbe:
   initialDelaySeconds: 5
   periodSeconds: 10
 
+resources:
+  requests:
+    memory: "256Mi"
+    cpu: "100m"
+  limits:
+    memory: "512Mi"
+    cpu: "200m"
 
 persistence:
   storageClass: standard
-  accessModes: ReadWriteOnce
+  accessModes: 
+    - ReadWriteOnce
   size: 1Gi
   hostPath: /tmp/mongodb # Only for single-node setups
 
@@ -33,4 +41,3 @@ mongodb:
     password: "password123"
     username: "my_user"
     database: "employees"
-

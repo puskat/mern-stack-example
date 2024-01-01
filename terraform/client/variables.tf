@@ -82,3 +82,19 @@ variable "readinessProbe_initialDelaySeconds" {
 variable "readinessProbe_periodSeconds" {
   description = "The period in seconds to perform the readiness probe"
 }
+
+variable "resources_requests_memory" {
+  description = "Memory requests for client"
+}
+
+variable "resources_requests_cpu" {
+  description = "CPU requests for client"
+}
+
+variable "resources_limits_memory" {
+  description = "Memory limits for client"
+}
+
+variable "resources_limits_cpu" {
+  description = "CPU limits for client"
+}
