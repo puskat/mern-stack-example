@@ -13,4 +13,3 @@ minikube addons enable ingress-dns
 
 echo "Minikube setup completed."
 
-

@@ -3,9 +3,9 @@ kind: PersistentVolume
 metadata:
   name: mongodb-pv
 spec:
-  storageClassName: standard # Replace with your desired storage class
+  storageClassName: standard 
   capacity:
-    storage: 1Gi # Adjust storage size as needed
+    storage: 1Gi 
   accessModes:
     - ReadWriteOnce
   hostPath:
@@ -17,7 +17,7 @@ kind: PersistentVolumeClaim
 metadata:
   name: mongodb-pvc
 spec:
-  storageClassName: standard # Match the PV's storage class
+  storageClassName: standard 
   accessModes:
     - ReadWriteOnce
   resources:
@@ -30,7 +30,7 @@ kind: Deployment
 metadata:
   name: mongodb-deployment
 spec:
-  replicas: 1 # Adjust as needed
+  replicas: 1 
   selector:
     matchLabels:
       app: mongodb
