@@ -1,3 +1,0 @@
-docker run --name mongodb --network=host \
-  -e MONGODB_USERNAME=my_user -e MONGODB_PASSWORD=password123 -e ALLOW_EMPTY_PASSWORD=yes \
-  -e MONGODB_DATABASE=employees bitnami/mongodb:latest
