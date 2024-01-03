@@ -46,4 +46,7 @@ To integrate SSL:
 
 ## Terraform Integration
 
-Finally, I created three separate Terraform projects for the server, client, and MongoDB. I declared all necessary variables in the `main.tf` files to make each application configurable through Terraform.
+I created three separate Terraform projects for the server, client, and MongoDB. I declared all necessary variables in the `main.tf` files to make each application configurable through Terraform.
+
+## HPA Integration
+Finally, horizontal pod autoscaling is added and enabled for ensured uptime under possible load. 
