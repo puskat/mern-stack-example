@@ -34,3 +34,10 @@ resources:
   limits:
     memory: "512Mi"
     cpu: "200m"
+
+autoscaling:
+  enabled: false
+  minReplicas: 2
+  maxReplicas: 5
+  targetCPUUtilizationPercentage: 1000
+  targetMemoryUtilizationPercentage: 300

@@ -1,4 +1,5 @@
 # Default values for MongoDB.
+replicaCount: 1
 image:
   repository: bitnami/mongodb
   tag: 4.4.6 
@@ -41,3 +42,10 @@ mongodb:
     password: "password123"
     username: "my_user"
     database: "employees"
+
+autoscaling:
+  enabled: false
+  minReplicas: 2
+  maxReplicas: 5
+  targetCPUUtilizationPercentage: 1000
+  targetMemoryUtilizationPercentage: 300
